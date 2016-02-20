@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block head_title %}PhotoZero{% endblock head_title %}</title>
+   
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+
+	{% include "messages_display.html" %}
+
+	<h4>PhotoZero</h4>
+
+	<a href="{% url 'timeline:list' %}">Home</a> | 
+    <a href="{% url 'timeline:create' %}">Upload Image</a>      
+
+    <br/><br/>
+
+	{% block content %}
+	{% endblock content %}
+
+	<hr>
+
+	<p>David McGowan 2016</p>
+
+	<script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
+
+</body>
+</html>
+
+
+
+

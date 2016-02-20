@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load i18n %}
+
+
+{% block content %}
+
+	<section id="uploadForm">
+		<div class='container'>
+			<div class="row">
+				<div class="col-md-12">
+					<h1>New Photo</h1>
+
+					<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+						{{ form.as_p }}
+						<br/>
+						<input type='submit' class='btn btn-block btn-lg btn-dark' value='Upload' />
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock content %}
+
+<!-- {% block scripts %}
+<script src="{% static 'js/bootstrap-uploadprogress.js' %}"></script>
+
+<script>
+  $("#form").uploadprogress({
+    	redirect_url: "/"
+  });
+</script>
+{% endblock %} -->

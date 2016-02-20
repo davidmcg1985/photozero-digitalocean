@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+  
+    <form method="GET" action="">
+        <input type="text" placeholder="Search Photos" name="q" value="{{ request.GET.q }}"><br/>
+        <a href="{% url 'timeline:list' %}">Clear search results</a>  
+    </form>
+
+    <br/><br/>
+
+  {% for obj in object_list %}
+
+    <hr>
+
+    <h2>{{ obj.title }}</h2>
+    <h4>{{ obj.timestamp }}</h4>
+
+  
+    {% if obj.image %}
+     <img src='{{ obj.image.url }}' />
+    {% endif %}
+
+    <p>
+      {% if obj.comments.count == 0 %}
+      No Comments
+      {% elif obj.comments.count == 1 %}
+      {{ obj.comments.count }} Comment
+      {% else %}
+      {{ obj.comments.count }} Comments
+      {% endif %}
+    </p>
+
+    <h4>Photographer: {{ obj.user }}</h4>
+
+    <a href="{{ obj.get_absolute_url }}">View</a>
+
+    {% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load urlify %}
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+
+
+
+{% block content %}
+
+	{% if instance.image %}
+		<img src='{{ instance.image.url }}' alt="{{ title }}"/>
+	{% endif %}
+
+	<h2>{{ title }}</h2>
+
+	<h4>Photographer: {{ instance.user }}</h4>
+
+	<p>{{ instance.timestamp }}  ({{ instance.timestamp | timesince }} Ago)</p>
+
+	<h4>Description:</h4>
+
+	{{ instance.description|linebreaks }}
+
+	<a href="{% url 'timeline:list' %}">Back</a>
+	<a href="{{ instance.image.url }}">Download</a>
+	<a href="{% url 'timeline:update' slug=instance.slug %}">Edit</a>
+	<a href="{% url 'timeline:delete' slug=instance.slug %}">Delete</a>
+
+	<hr>
+
+	<h4>
+		{% if instance.comments.count == 0 %}
+        No Comments
+        {% elif instance.comments.count == 1 %}
+        {{ instance.comments.count }} Comment
+        {% else %}
+        {{ instance.comments.count }} Comments
+        {% endif %}
+	</h4>
+				
+	{% for comment in instance.comments.all %}
+		{{ comment.author }} ({{ comment.created_date | timesince }} Ago)
+	    <p class="comment">{{ comment.text }}</p>
+	{% endfor %}
+
+	<form method="POST" action=''>
+		{% csrf_token %}
+        {{ form.as_p }}
+	    <button type="submit">Add</button>
+	</form>
+
+{% endblock content %}
