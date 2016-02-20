@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'timeline',
     'imagekit',
+    'taggit',
 ]
 
 MIDDLEWARE_CLASSES = [

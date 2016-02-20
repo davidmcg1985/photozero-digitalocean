@@ -24,7 +24,8 @@ def photo_list(request):
 			Q(title__icontains=query) |
 			Q(description__icontains=query) |
 			Q(user__first_name__icontains=query) |
-			Q(user__last_name__icontains=query)
+			Q(user__last_name__icontains=query) |
+			Q(tags__icontains=query)
 			).distinct()
 
 	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
