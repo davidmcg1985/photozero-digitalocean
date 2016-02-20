@@ -49,7 +49,7 @@ def photo_list(request):
 
 
 def photo_detail(request, slug=None):
-	if not request.user.is_staff or not request.user.is_superuser:
+	if not request.user.is_staff:
 	 	raise Http404
 
 	instance = get_object_or_404(Photo, slug=slug)
@@ -78,7 +78,7 @@ def photo_detail(request, slug=None):
 
 
 def photo_create(request):
-	if not request.user.is_staff or not request.user.is_superuser:
+	if not request.user.is_staff:
 	 	raise Http404
 
 	form = PhotoForm(request.POST or None, request.FILES or None)
@@ -99,7 +99,7 @@ def photo_create(request):
 
 
 def photo_update(request, slug=None):
-	if not request.user.is_staff or not request.user.is_superuser:
+	if not request.user.is_staff:
 	 	raise Http404
 
 	instance = get_object_or_404(Photo, slug=slug)
@@ -123,7 +123,7 @@ def photo_update(request, slug=None):
 
 
 def photo_delete(request, slug=None):
-	if not request.user.is_staff or not request.user.is_superuser:
+	if not request.user.is_staff:
 	 	raise Http404
 
 	instance = get_object_or_404(Photo, slug=slug)
