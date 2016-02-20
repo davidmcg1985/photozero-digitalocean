@@ -22,7 +22,7 @@
     <a href="{% url 'timeline:create' %}">Upload Image</a>      
 
     <br/><br/>
-    To test this application login at <a href="{% url 'admin:index' %}">Admin</a> as <i>user</i> with password <i>user12345</i>. Click <i>VIEW SITE</i> to return to this page.
+    To test this application login at <a href="{% url 'admin:index' %}">Admin</a> as <i>user</i> with password <i>user12345</i>. Click <i>VIEW SITE</i> to return to this page. Without logging in you will receive a 404 error when attempting to either upload or view a photograph!
 	<br/><br/>
 
 	{% block content %}
