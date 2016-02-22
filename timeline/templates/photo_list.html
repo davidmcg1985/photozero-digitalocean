@@ -20,10 +20,6 @@
     <h2>{{ obj.title }}</h2>
     <h4>{{ obj.timestamp }}</h4>
     <p>
-<!--       <li>Tags:</li>
-      {% for tag in obj.tags.all %}
-      <li><i>{{ tag.name }}</i></li>
-      {% endfor %} -->
       {{obj.tags.all|join:", "}}
     </p>
     </div>
