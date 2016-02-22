@@ -12,6 +12,8 @@ from imagekit.processors import Transpose, ResizeToFit
 
 from django.utils.text import slugify
 
+from taggit.managers import TaggableManager
+
 import hashlib
 
 
@@ -36,6 +38,8 @@ class Photo(models.Model):
 	description = models.TextField(max_length=1000)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+	tags = TaggableManager()
 
 	def __unicode__(self):
 		return self.title

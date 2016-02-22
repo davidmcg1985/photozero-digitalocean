@@ -10,6 +10,7 @@ class PhotoForm(forms.ModelForm):
             "title",
             "description",
             "image",
+            "tags",
         ]
 
 
