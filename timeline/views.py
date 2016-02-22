@@ -9,6 +9,8 @@ from django.utils import timezone
 from .forms import PhotoForm, CommentForm
 from .models import Photo, Comment
 
+from taggit import *
+
 
 def photo_list(request):
 
@@ -25,7 +27,7 @@ def photo_list(request):
 			Q(description__icontains=query) |
 			Q(user__first_name__icontains=query) |
 			Q(user__last_name__icontains=query) |
-			Q(tags__icontains=query)
+			Q(tags__name__in=[query])
 			).distinct()
 
 	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
@@ -88,6 +90,7 @@ def photo_create(request):
 		instance = form.save(commit=False)
 		instance.user = request.user
 		instance.save()
+		form.save_m2m()
 		messages.success(request, "Succesfully Created") # message success
 
 		return HttpResponseRedirect(instance.get_absolute_url())
@@ -110,6 +113,7 @@ def photo_update(request, slug=None):
 		instance = form.save(commit=False)
 		instance.user = request.user
 		instance.save()
+		form.save_m2m()
 		messages.success(request, "Succesfully Updated") # message success
 
 		return HttpResponseRedirect(instance.get_absolute_url())
