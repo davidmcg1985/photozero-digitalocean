@@ -19,6 +19,11 @@
     <div>
     <h2>{{ obj.title }}</h2>
     <h4>{{ obj.timestamp }}</h4>
+
+    <p>
+      {{obj.tags.all|join:", "}}
+    </p>
+
     </div>
 
   
