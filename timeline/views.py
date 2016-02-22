@@ -17,7 +17,7 @@ def photo_list(request):
 	if request.user.is_staff or request.user.is_superuser:
 		queryset_list = Photo.objects.all()
 
-	query = request.GET.get("q")
+	query = request.GET.get("search")
 
 	if query:
 		queryset_list = queryset_list.filter(
@@ -110,7 +110,7 @@ def photo_update(request, slug=None):
 
 	if form.is_valid():
 		instance = form.save(commit=False)
-		instance.user = request.user
+		# instance.user = request.user
 		instance.save()
 		form.save_m2m()
 		messages.success(request, "Succesfully Updated") # message success

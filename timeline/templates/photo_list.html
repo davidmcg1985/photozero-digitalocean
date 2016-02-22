@@ -4,9 +4,9 @@
 {% load i18n %}
 
 {% block content %}
-  
+    <p>Search in title, description, photographer and tags</p>
     <form method="GET" action="">
-        <input type="text" placeholder="Search Photos" name="q" value="{{ request.GET.q }}"><br/>
+        <input type="text" placeholder="Search Photos" name="search" value="{{ request.GET.search }}"><br/>
         <a href="{% url 'timeline:list' %}">Clear search results</a>  
     </form>
 
@@ -21,11 +21,10 @@
     <h4>{{ obj.timestamp }}</h4>
 
     <p>
-      {{obj.tags.all|join:", "}}
+      Tags <i>{{obj.tags.all|join:", "}}</i>
     </p>
 
     </div>
-
   
     {% if obj.image %}
      <img src='{{ obj.image.url }}' />
