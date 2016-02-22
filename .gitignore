@@ -5,6 +5,8 @@ photozero-do.sublime-project
 photozero-do.sublime-workspace
 mediafiles/
 photozeroenv/
+404.html
+500.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
