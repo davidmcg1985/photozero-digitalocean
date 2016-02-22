@@ -19,18 +19,20 @@
     <div>
     <h2>{{ obj.title }}</h2>
     <h4>{{ obj.timestamp }}</h4>
-<<<<<<< HEAD
+
+    <!-- 
     <ul class="tags">
       <li>Tags:</li>
       {% for tag in obj.tags.all %}
       <li><i>{{ tag.name }}</i></li>
       {% endfor %}
-    </ul>   
-=======
+    </ul> 
+    -->
+
     <p>
       {{obj.tags.all|join:", "}}
     </p>
->>>>>>> 39f4c2b5ed2050a33521df2c11485253e5d6bbfe
+    
     </div>
 
   
