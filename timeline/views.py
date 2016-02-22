@@ -9,8 +9,6 @@ from django.utils import timezone
 from .forms import PhotoForm, CommentForm
 from .models import Photo, Comment
 
-from taggit import *
-
 
 def photo_list(request):
 

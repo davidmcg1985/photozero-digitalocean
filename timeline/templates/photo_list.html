@@ -5,7 +5,6 @@
 
 {% block content %}
   
-    <p>Search title, description, photographer or tags.</p>
     <form method="GET" action="">
         <input type="text" placeholder="Search Photos" name="q" value="{{ request.GET.q }}"><br/>
         <a href="{% url 'timeline:list' %}">Clear search results</a>  
@@ -21,7 +20,11 @@
     <h2>{{ obj.title }}</h2>
     <h4>{{ obj.timestamp }}</h4>
     <p>
-      Tags <i>{{obj.tags.all|join:", "}}</i>
+<!--       <li>Tags:</li>
+      {% for tag in obj.tags.all %}
+      <li><i>{{ tag.name }}</i></li>
+      {% endfor %} -->
+      {{obj.tags.all|join:", "}}
     </p>
     </div>
 
