@@ -25,6 +25,7 @@ def photo_list(request):
 			Q(description__icontains=query) |
 			Q(user__first_name__icontains=query) |
 			Q(user__last_name__icontains=query) |
+			# Q(tags__icontains=query) |
 			Q(tags__name__in=[query])
 			).distinct()
 
