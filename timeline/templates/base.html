@@ -91,7 +91,7 @@
 				<li><a href="{% url 'admin:index' %}"><i class="fa fa-cog fa-fw"></i>&nbsp; Admin</a></li>
 				{% endif %}
 				{% if user.is_authenticated %}
-				<li><a href="{% url 'timeline:list' %}"><i class="fa fa-upload fa-fw"></i>&nbsp; Upload</a></li>
+				<li><a href="{% url 'timeline:create' %}"><i class="fa fa-upload fa-fw"></i>&nbsp; Upload</a></li>
 				<li><a href=""><i class="fa fa-user fa-fw"></i>&nbsp; Profile</a></li>
 				<li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out fa-fw"></i>&nbsp; Logout</a></li>
 				{% else %}
