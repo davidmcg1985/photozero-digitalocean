@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load staticfiles %}
 
 {% load i18n %}
@@ -11,7 +12,7 @@
 			<div class="col-md-12">
 				<h1>Edit Photo</h1>
 				<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-					{{ form.as_p }}
+					{{ form | crispy }}
 					<br/>
 					<input type='submit' class='btn btn-block btn-lg btn-dark' value='Update' />
 				</form>

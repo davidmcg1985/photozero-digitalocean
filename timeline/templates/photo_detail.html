@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load urlify %}
+{% load crispy_forms_tags %}
 {% load staticfiles %}
 
 {% load i18n %}
@@ -12,46 +13,147 @@
 
 {% block content %}
 
-	{% if instance.image %}
-		<img src='{{ instance.image.url }}' alt="{{ title }}"/>
-	{% endif %}
+  <div class="space"></div> <!-- 40px Vertical Spacing -->
 
-	<h2>{{ title }}</h2>
+  <!-- Photo Detail -->
+ 	<section id="photoDetail">
 
-	<h4>Photographer: {{ instance.user }}</h4>
+	<div class="container">
 
-	<p>{{ instance.timestamp }}  ({{ instance.timestamp | timesince }} Ago)</p>
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>{{ title }}</h4>
+				{{ instance.timestamp }}  ({{ instance.timestamp | timesince }} Ago)
+			</div>
+		</div>	
 
-	<h4>Description:</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="photoDetail">
+				{% if instance.image %}
+		    		<img src='{{ instance.image.url }}' class='img-responsive' />
+		    	{% endif %}
+	    		</div>
+    		</div>
+    	</div>
+	</div>
 
-	{{ instance.description|linebreaks }}
+	<div class="container"> <!-- Container -->
 
-	<a href="{% url 'timeline:list' %}">Back</a>
-	<a href="{{ instance.image.url }}">Download</a>
-	<a href="{% url 'timeline:update' slug=instance.slug %}">Edit</a>
-	<a href="{% url 'timeline:delete' slug=instance.slug %}">Delete</a>
+		<div class="row">
+	        <div class="col-md-12">
+	          <div class="fb-like pull-left" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+	        </div>
+	      </div>
 
-	<hr>
+	 	<div class="row">
 
-	<h4>
-		{% if instance.comments.count == 0 %}
-        No Comments
-        {% elif instance.comments.count == 1 %}
-        {{ instance.comments.count }} Comment
-        {% else %}
-        {{ instance.comments.count }} Comments
-        {% endif %}
-	</h4>
-				
-	{% for comment in instance.comments.all %}
-		{{ comment.author }} ({{ comment.created_date | timesince }} Ago)
-	    <p class="comment">{{ comment.text }}</p>
-	{% endfor %}
+			<div class="col-md-7">	
+				<a class="btn btn-block btn-lg btn-purplea" style="cursor: default; text-transform: none;">
+				Photographer: {{ instance.user }}
+				</a>
+			</div>
 
-	<form method="POST" action=''>
-		{% csrf_token %}
-        {{ form.as_p }}
-	    <button type="submit">Add</button>
-	</form>
+			<div class="col-md-5 text-right">
+					<span class="btn btn-lg btn-purplea" style="cursor: default; text-transform: none;">Share</span>
+				<!-- Comments section -->
+					<a class="btn btn-lg btn-graya btn--comment" href="#comments" data-toggle="tooltip" data-placement="bottom" title="Comments" data-original-title="Comments">
+					    <span><i class="fa fa-comment" style="color: #FF9B37;"></i></span>
+					</a>
+
+				<!-- Facebook -->
+				<a class="btn btn-lg btn-darka btn--facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" onclick="window.open(this.href,'facebook-share-dialog','width=626,height=436');return false;" data-toggle="tooltip" data-placement="bottom" title="Facebook" data-original-title="Facebook">
+				    <span><i class="fa fa-facebook-square" style="color: #004088;"></i></span>
+				</a>
+
+				<!-- Twitter -->
+				<a class="btn btn-lg btn-darka btn--twitter" target="_blank" href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}" onclick="window.open(this.href,'twitter-share-dialog','width=626,height=436');return false;" data-toggle="tooltip" data-placement="bottom" title="Twitter" data-original-title="Twitter">
+				   <span><i class="fa fa-twitter-square" style="color: #49A8DE;"></i></span>
+				</a>
+
+				<!-- WhatsApp -->
+				<a class="btn btn-lg btn-darka btn--whatsapp hidden-md-plus" href="whatsapp://send?text={{ title }}%20{{ request.build_absolute_uri }}" target="_blank" data-text="{{ title }} " data-href="{{ request.build_absolute_uri }}" data-toggle="tooltip" data-placement="bottom" title="WhatsApp" data-original-title="WhatsApp"><span><i class="fa fa-whatsapp" style="color: #43D854;"></i></span></a>
+
+			</div>
+		</div>
+		
+		<div class='row'>
+			<div class='col-sm-12'>
+				<div class="description">
+					<h4>Description</h4>
+					{{ instance.description|linebreaks }}
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2">
+				<a href="{% url 'timeline:list' %}" class="btn btn-block btn-lg btn-dark" role="button"><i class="fa fa-angle-double-left"></i>
+ Back</a>
+			</div>
+			<div class="col-sm-4">
+				<a href="{{ instance.image.url }}" class="btn btn-block btn-lg btn-purple" role="button"><i class="fa fa-download"></i> Download</a>
+			</div>
+			{% if user.is_superuser or request.user == instance.user %}  
+			<div class="col-sm-4">
+				<a href="{% url 'timeline:update' slug=instance.slug %}" class="btn btn-block btn-lg btn-purple" role="button"><i class="fa fa-pencil-square-o"></i> Edit</a>
+			</div> 
+			<div class="col-sm-2">	  
+				<a href="{% url 'timeline:delete' slug=instance.slug %}" class="btn btn-block btn-lg btn-red" role="button"><i class="fa fa-times-circle"></i> Delete</a>
+			</div>
+			{% else %}
+			<div class="col-sm-4">
+			</div> 
+			<div class="col-sm-2">	  
+			</div>			
+			{% endif %}
+
+		</div>
+
+		<div class="space"></div> <!-- 40px Vertical Spacing -->
+	
+		<div class="comment-section">
+		<div class="row">
+			<div class="col-md-12" id="comments">
+				<h4>
+					{% if instance.comments.count == 0 %}
+		            No Comments
+		            {% elif instance.comments.count == 1 %}
+		            {{ instance.comments.count }} Comment
+		            {% else %}
+		            {{ instance.comments.count }} Comments
+		            {% endif %}
+				</h4>
+				<hr style="margin-top: 10px;">
+					{% for comment in instance.comments.all %}
+					    <div class="comment">
+					        <div class="date pull-right">{{ comment.created_date | timesince }} Ago</div>
+					        <strong>{{ comment.author }}</strong>
+					        <p>{{ comment.text|linebreaks }}</p>
+					    </div>
+					    <hr>
+					{% endfor %}
+				<!-- Facebook comments -->
+				<!--<div class="col-sm-12">
+					<div id="comments" class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div>
+				</div> -->
+			</div>
+		</div>
+		
+		{% if user.is_superuser or user.is_authenticated %} 
+		<div class="row">
+			<div class="col-md-12">
+				<form method="POST" class="comment-form" action=''>
+					{% csrf_token %}
+			        {{ form | crispy }}
+				    <button type="submit" class="comment-add btn btn-lg btn-purple">Add</button>
+				</form>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+
+  </section>
+
 
 {% endblock content %}
