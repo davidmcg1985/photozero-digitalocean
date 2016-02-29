@@ -10,11 +10,14 @@
 
 {% block content %}
 
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3">
-		  <div class="row">
-		    <h1>{% trans "Confirm E-mail Address" %}</h1>
+  <div class="space"></div> <!-- 40px Vertical Spacing -->
 
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3 auth-box">
+		  <div class="row">
+		  	<div class="text-center">
+		    	<h1>{% trans "Confirm E-mail Address" %}</h1>
+			</div>
 			{% user_display confirmation.email_address.user as user_display %}
 			        
 			<p>{% blocktrans with confirmation.email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>

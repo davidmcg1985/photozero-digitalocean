@@ -94,8 +94,8 @@ a:focus {
 
 .alert-success {
     color: #FFF;
-    background-color: #BE9BDB;
-    border-color: #BE9BDB;
+    background-color: #000;
+    border-color: #000;
 }
 .alert {
     padding: 15px;
@@ -466,7 +466,7 @@ input[type="file"] {
     width: 100%;
     display: block;
     color: #494949 !important;
-    border: 1px solid #82368C;
+    border: 1px solid #ccc;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
@@ -480,6 +480,7 @@ input[type="file"] {
     -moz-user-select: none;
     background-image: none;
     margin-top: 10px;
+    background-color: #ffffff;
 }
 
 #div_id_image > .controls {

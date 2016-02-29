@@ -7,11 +7,14 @@
 
 {% block content %}
 
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3">
-		 	<div class="row">
+  <div class="space"></div> <!-- 40px Vertical Spacing -->
 
-			<h1>{% trans "Login Cancelled" %}</h1>
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3 auth-box">
+		 	<div class="row">
+			<div class="text-center">
+				<h1>{% trans "Login Cancelled" %}</h1>
+			</div>
 
 			{% url 'account_login' as login_url %}
 

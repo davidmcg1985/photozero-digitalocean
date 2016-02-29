@@ -6,11 +6,13 @@
 
 {% block content %}
 
-<section id="uploadForm">
-	<div class='container'>
-		<div class="row">
-			<div class="col-md-12">
-				<h1>Edit Photo</h1>
+	<div class="space"></div> <!-- 40px Vertical Spacing -->
+
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3 auth-box">
+				<div class="text-center">
+					<h1>Edit Photo</h1>
+				</div>
 				<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
 					{{ form | crispy }}
 					<br/>
@@ -18,8 +20,6 @@
 				</form>
 			</div>
 		</div>
-	</div>
-</section>
 
 {% endblock content %}
 

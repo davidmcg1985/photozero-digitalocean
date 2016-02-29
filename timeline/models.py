@@ -77,32 +77,6 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 pre_save.connect(pre_save_post_receiver, sender=Photo)
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name='profile')
-    about_me = models.TextField(null=True, blank=True)
-
-    def __unicode__(self):
-        return "{}'s profile".format(self.user.username)
-
-    def __str__(self):
-        return "{}'s profile".format(self.user.username)
-
-    class Meta:
-        db_table = 'user_profile'
-
-    def profile_image_url(self):
-        fb_uid = SocialAccount.objects.filter(user_id=self.user.id, provider='facebook')
-
-        if len(fb_uid):
-            return "http://graph.facebook.com/{}/picture?width=40&height=40".format(fb_uid[0].uid)
-
-        return "http://www.gravatar.com/avatar/{}?s=40".format(
-            hashlib.md5(self.user.email).hexdigest())
-
-
-User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
-
-
 class Comment(models.Model):
     post = models.ForeignKey('timeline.Photo', related_name='comments')
     author = models.ForeignKey(User, related_name='comment_set')

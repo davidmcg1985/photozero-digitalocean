@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Photo, UserProfile, Comment
+from .models import Photo, Comment
 
 class PhotoModelAdmin(admin.ModelAdmin):
 	list_display = ["title", "updated", "timestamp", "user"]
@@ -15,5 +15,4 @@ class PhotoModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Photo, PhotoModelAdmin)
-admin.site.register(UserProfile)
 admin.site.register(Comment)
