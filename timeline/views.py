@@ -29,7 +29,7 @@ def photo_list(request):
 			Q(tags__name__in=[query])
 			).distinct()
 
-	paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
+	paginator = Paginator(queryset_list, 10) # Show 10 items per page
 	page_request_var = "page"
 	page = request.GET.get(page_request_var)
 	try:

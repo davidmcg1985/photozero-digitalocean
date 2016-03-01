@@ -26,43 +26,49 @@
     </div>
   </div>
 
-  <!-- Timeline -->
-  <section id="timeline">
+  <div class="space"></div> <!-- 40px Vertical Spacing -->
 
   {% for obj in object_list %}
-  <div class="space"></div> <!-- 40px Vertical Spacing -->
-  <div class="container"> <!-- Container Fluid-->
+  <div class="timeline"><!-- Timeline -->
 
-    <div class="row">
-      <div class="col-md-12">
-        <h1 style="text-decoration: underline;">{{ obj.title }}</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 text-left">
-        {{ obj.timestamp }}
-      </div>
-      <div class="col-md-6 text-right">
-        Tags <i>{{obj.tags.all|join:", "}}</i>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-md-12">
-        <div class="timeline">
-            {% if obj.image %}
-             <img src='{{ obj.image.url }}' class='img-responsive' />
-            {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <div class="container">
+    <div class="container"> <!-- Top Container -->
 
       <div class="row">
-        <div class="col-md-4">
-          <a class="btn btn-block btn-lg btn-purplea" style="cursor: default; text-transform: none;">
+        <div class="col-xs-12 text-center">
+          <h1 style="text-decoration: underline;">{{ obj.title }}</h1>
+        </div>
+      </div>
+      <div class="row"><!-- row starts -->
+        <div class="col-xs-6">
+          <i>{{obj.tags.all|join:", "}}</i><br/>
+        </div>
+        <div class="col-xs-6 text-right">
+          {{ obj.timestamp | timesince }} Ago
+        </div>
+      </div><!-- row ends -->
+
+      <div class="row"><!-- row starts -->
+        <div class="col-md-12">
+          <div class="timeline-image">
+              {% if obj.image %}
+              <a href="{{ obj.get_absolute_url }}">
+               <img src='{{ obj.image.url }}' class='img-responsive' />
+              </a>
+              {% endif %}
+          </div>
+        </div>
+      </div><!-- row ends -->
+    </div> <!-- Top Container End -->
+
+    <div class="container"> <!-- Bottom Container -->
+
+      <div class="row"><!-- row starts -->
+        <div class="col-xs-6 col-sm-6 text-left">
+          <i class="fa fa-user fa-2x"></i> <span class="image-author">{{ obj.user }}</span>
+        </div>
+        <div class="col-xs-6 col-sm-6 text-right">
+          <i class="fa fa-comment fa-2x"></i> 
+          <a href="{{ obj.get_absolute_url }}" class="comment-link">
             {% if obj.comments.count == 0 %}
             No Comments
             {% elif obj.comments.count == 1 %}
@@ -72,22 +78,11 @@
             {% endif %}
           </a>
         </div>
-        <div class="col-md-6">
-          <a class="btn btn-block btn-lg btn-purplea" style="cursor: default; text-transform: none;">Photographer: {{ obj.user }}</a>
-        </div>
-        <div class="col-md-2">
-          <a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-lg btn-dark" role="button">View <i class="fa fa-angle-double-right"></i></a>
-        </div>
       </div>
-    </div>
-          <!-- <a class="btn btn-block btn-lg btn-purplea" style="cursor: default; text-transform: none;">
-            {{ obj.content|truncatechars:50 }}
-          </a> -->
-    <div class="space"></div> <!-- 40px Vertical Spacing -->
-  {% endfor %}
-  </div>
 
-  </section>
+    </div> <!-- Bottom Container End -->
+  </div>
+  {% endfor %}
 
   <div class="space"></div> <!-- 40px Vertical Spacing -->
 
