@@ -35,7 +35,7 @@
 
       <div class="row">
         <div class="col-xs-12 text-center">
-          <h1 style="text-decoration: underline;">{{ obj.title }}</h1>
+          <a href="{{ obj.get_absolute_url }}"><h1 style="text-decoration: underline;">{{ obj.title }}</h1></a>
         </div>
       </div>
       <div class="row"><!-- row starts -->
@@ -46,18 +46,18 @@
           {{ obj.timestamp | timesince }} Ago
         </div>
       </div><!-- row ends -->
-
-      <div class="row"><!-- row starts -->
-        <div class="col-md-12">
-          <div class="timeline-image">
-              {% if obj.image %}
-              <a href="{{ obj.get_absolute_url }}">
-               <img src='{{ obj.image.url }}' class='img-responsive' />
-              </a>
-              {% endif %}
+      
+        <div class="row"><!-- row starts -->
+          <div class="col-md-12 image-max">
+            <div class="timeline-image">
+                {% if obj.image %}
+                <a href="{{ obj.get_absolute_url }}">
+                 <img src='{{ obj.image.url }}' class='img-responsive' />
+                </a>
+                {% endif %}
+            </div>
           </div>
-        </div>
-      </div><!-- row ends -->
+        </div><!-- row ends -->
     </div> <!-- Top Container End -->
 
     <div class="container"> <!-- Bottom Container -->
@@ -86,7 +86,7 @@
 
   <div class="space"></div> <!-- 40px Vertical Spacing -->
 
-  <div class="container">
+<!--   <div class="container">
     <div class="col-md-12 text-center">
       <ul class="pagination pagination-lg">
         <li>{% if object_list.has_previous %}
@@ -107,6 +107,6 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
 {% endblock content %}
