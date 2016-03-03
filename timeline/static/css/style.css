@@ -188,13 +188,7 @@ a:focus {
 }
 
 .logo {
-    display: inline !important;
-    max-width: 35%;
-}
-
-.logo-link {
-    color: #82368C;
-    text-decoration: none;
+    max-height: 100%;
 }
 
 /***************************
