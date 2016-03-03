@@ -39,11 +39,15 @@
 
 	<div class="container"> <!-- Container -->
 
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+			</div>
+		</div>
+
 	    <div class="row">
 	    	<div class="col-xs-6 col-sm-6 text-left">
-	    		<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-<!-- 	    		<i class="fa fa-user"></i> {{ instance.user }}<br/>
-          		On {{ instance.timestamp }} -->
+				<a href="{% url 'timeline:list' %}" role="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i> Back</a>
         	</div>
 
 			<div class="col-xs-6 col-sm-6 text-right">
@@ -53,13 +57,13 @@
 				  </button>
 				  <ul class="dropdown-menu dropdown-menu-right">
 				    <li><a href="{{ instance.image.url }}" role="button"><i class="fa fa-download"></i> Download</a></li>
+				    <li role="separator" class="divider"></li>
 				    {% if user.is_superuser or request.user == instance.user %}
 				    <li><a href="{% url 'timeline:update' slug=instance.slug %}" role="button"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
 				    <li><a href="{% url 'timeline:delete' slug=instance.slug %}" role="button"><i class="fa fa-times-circle"></i> Delete</a></li>
 				    {% else %}
 				    {% endif %}
-				    <li role="separator" class="divider"></li>
-				    <li><a href="{% url 'timeline:list' %}" role="button"><i class="fa fa-angle-double-left"></i> Back</a></li>
+				    
 				  </ul>
 				</div>
 			</div>
