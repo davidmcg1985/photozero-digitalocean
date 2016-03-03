@@ -137,6 +137,9 @@ def photo_delete(request, slug=None):
 	return redirect("timeline:list")
 
 
+def license(request):
+	return render(request, "license.html")
+
 
 
 

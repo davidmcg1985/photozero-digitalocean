@@ -8,6 +8,7 @@ import timeline.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', timeline.views.photo_list, name='list'),
+    url(r'^license/', timeline.views.license, name='license'),
     url(r'^timeline/', include('timeline.urls', namespace='timeline')),
     url(r'^accounts/', include('allauth.urls')),
 ]
