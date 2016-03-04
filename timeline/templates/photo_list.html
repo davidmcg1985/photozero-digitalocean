@@ -16,13 +16,17 @@
 
               <div class="space"></div> <!-- 40px Vertical Spacing -->
               
-              <div class="search-box">
-                <form method="GET" action="">
-                    <input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" name="search" class="form-control input-lg" value="{{ request.GET.q }}"><br/>
-                    <a href="{% url 'timeline:list' %}">Clear search results</a>
-                    <!-- <button type="submit" class="btn btn-purple searchBtn"><i class="fa fa-search"></i></button> -->
-                </form>
-              </div>
+              <form method="GET" action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" name="search" value="{{ request.GET.q }}"> 
+                   <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit">
+                         Search!
+                      </button>
+                   </span>
+                </div><!-- /input-group -->
+                <a href="{% url 'timeline:list' %}">Clear search results</a>
+              </form>
           </div>
       </div>
     </div>
