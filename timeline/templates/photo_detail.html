@@ -41,13 +41,11 @@
 
 		<div class="row">
 			<div class="col-xs-12 text-left">
-<!-- 				<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
- -->			<button id="like" name="{{ instance.slug }}" class="btn btn-primary" type="button">
-    				<span class="fa fa-thumbs-up"></span> Like
-    			</button>
-    			<strong id="like_count">{{ instance.total_likes }}</strong> people like this photo.
 
-				<!-- <input type="button" id="like" name="{{ photo_slug }}" value="Like" /> -->
+ 				<button id="like" name="{{ instance.slug }}" class="btn btn-default like-btn" type="button">
+ 					<span id="like_count">{{ instance.total_likes }}</span>
+    				<i class="fa fa-star-o fav-star"></i> Favourite
+    			</button>
 
 			</div>
 		</div>
@@ -171,8 +169,16 @@
                data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                dataType: "json",
                success: function(response) {
-                      alert(response.message);
-                      alert('Company likes count is now ' + response.likes_count);
+                      // alert(response.message);
+                      // alert('Company likes count is now ' + response.likes_count);
+                      $("#like_count").text(response.likes_count);
+                      //$(".fav-star").removeClass("fa-star-o").addClass("fa-star").css("color", "gold");
+
+                      if (response.action == "liked") {
+                      	$(".fav-star").removeClass("fa-star-o").addClass("fa-star").css("color", "gold");
+                      } else {
+                      	$(".fav-star").removeClass("fa-star").addClass("fa-star-o").css("color", "black");
+                      }
                 },
                 error: function(rs, e) {
                        alert(rs.responseText);

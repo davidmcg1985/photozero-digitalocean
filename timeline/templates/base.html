@@ -69,12 +69,6 @@
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
-<!-- 		<p class="navbar-user">
-			{% if user.is_authenticated %}
-			<img src="{{ request.user.profile.profile_image_url }}"/>
-			<span style="margin-left:5px;">Hi, {{  user.username }}</span>
-			{% endif %}
-		</p> -->
 		<a href="{% url 'timeline:list' %}" class="navbar-brand">
 			<img src="{% static 'img/logo500x345.png' %}" alt="logo" class="img-responsive logo"/>&nbsp; PhotoZero
 		</a>
@@ -111,13 +105,28 @@
 		</div>
 	</nav>
 
-			{% include "messages_display.html" %}
+	{% include "messages_display.html" %}
+	
+	<div class="space"></div> <!-- 40px Vertical Spacing -->
 
-			{% block content %}
-			{% endblock content %}
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-6 col-md-offset-3">
+	          	<div class="text-center">
+					<p>
+						{% if user.is_authenticated %}
+						Hi, <strong>{{  user.username }}</strong>
+						{% endif %}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	{% block content %}
+	{% endblock content %}
 
-		<div class="space"></div> <!-- 40px Vertical Spacing -->
+	<div class="space"></div> <!-- 40px Vertical Spacing -->
 
 	<div id="footer">
 		<div class="container">

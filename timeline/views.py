@@ -2,11 +2,14 @@ from urllib import quote_plus
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
+
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
 
 from .forms import PhotoForm, CommentForm
 from .models import Photo, Comment
@@ -144,25 +147,28 @@ def license(request):
 	return render(request, "license.html")
 
 
-def like(request, slug=None):
+def like(request):
     if request.method == 'POST':
         user = request.user
-        # slug = request.POST.get('slug', None)
+        slug = request.POST.get('slug', None)
         photo = get_object_or_404(Photo, slug=slug)
+        # photo = get_object_or_404(Photo, slug=request.POST['slug'])
 
         if photo.likes.filter(id=user.id).exists():
             # user has already liked this company
             # remove like/user
             photo.likes.remove(user)
             message = 'You disliked this'
+            action = 'disliked'
         else:
             # add a new like for a company
             photo.likes.add(user)
             message = 'You liked this'
+            action = 'liked'
 
-    context = {'likes_count': photo.total_likes, 'message': message}
+    context = {'likes_count': photo.total_likes(), 'message': message, 'action': action}
     # use mimetype instead of content_type if django < 5
-    return HttpResponse(json.dumps(context), content_type='application/json')
+    return JsonResponse(context)
 
 
 
