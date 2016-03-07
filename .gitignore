@@ -5,6 +5,7 @@ photozero-do.sublime-project
 photozero-do.sublime-workspace
 mediafiles/
 photozeroenv/
+timeline/migrations/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
