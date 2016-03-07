@@ -94,8 +94,8 @@ a:focus {
 
 .alert-success {
     color: #FFF;
-    background-color: #000;
-    border-color: #000;
+    background-color: #82368C;
+    border-color: #82368C;
 }
 .alert {
     padding: 15px;
@@ -110,6 +110,7 @@ a:focus {
 
 .navbar-header {
     float: none;
+    padding: 5px 0px;
 }
 .navbar-toggle {
     display: block;
@@ -178,14 +179,16 @@ a:focus {
     background-color: #fff;
 }
 
-.logo {
-    display: inline !important;
-    max-width: 35%;
+.navbar-brand {
+    padding: 5px 15px;
 }
 
-.logo-link {
-    color: #82368C;
-    text-decoration: none;
+.navbar-brand > img {
+    display: inline-block;
+}
+
+.logo {
+    max-height: 100%;
 }
 
 /***************************
@@ -193,7 +196,7 @@ a:focus {
 ***************************/
 .timeline {
     background-color: #ffffff;
-    margin: 40px 0;
+    margin: 20px 0 40px 0;
     padding: 20px 0;
 }
 
@@ -235,6 +238,10 @@ a:focus {
     padding: 10px;
 }
 
+.image-max {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
 
 /***************************
 ******** Photo Detail ********
@@ -270,7 +277,7 @@ a:focus {
     border-top: 1px solid #82368C;
     border-bottom: 1px solid #82368C;
     padding: 20px;
-    margin: 20px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .btn-comment {
@@ -285,7 +292,7 @@ a:focus {
     box-shadow: 0px 0px 0px 0px #004088 inset !important;
     border: 1px solid #004088 !important;
     /*border-bottom: 5px solid #004088 !important;*/
-    color: #004088;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -293,7 +300,7 @@ a:focus {
     box-shadow: 0px 0px 0px 0px #49A8DE inset !important;
     border: 1px solid #49A8DE !important;    
     /*border-bottom: 5px solid #49A8DE !important;*/
-    color: #49A8DE !important;
+    color: #fff !important;
     text-decoration: none;
 }
 
@@ -316,22 +323,29 @@ a:focus {
     margin: 20px;
 }
 
-/*.date {
-
-}
-
-.comment-add {
-
-}*/
-
-.comment-link {
-    font-size: 19px;
-    color: #666;
-}
-
 @media only screen and (min-width: 768px) {
-  .hidden-md-plus {
-    display: none; } 
+    .hidden-btn-whatsapp {
+        display: none; 
+    }
+
+    .image-max {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    /*margin: 0px !important;
+    }*/
+    }
+
+    .fb-like {
+        position: absolute !important;
+        left: 25px !important;
+        bottom: 20px;
+        z-index: 1000px;
+    /*    background-color: #fff;
+        border: 1px solid #494949;
+        border-radius: 2px;
+        padding: 8px;*/
+    }
+
 }
 
 /***************************
@@ -348,7 +362,6 @@ a:focus {
     background-color: #494949;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-dark:hover {
@@ -364,7 +377,6 @@ a:focus {
     background-color: #82368C;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-purple:hover {
@@ -380,7 +392,6 @@ a:focus {
     background-color: #bfc2c5;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-gray:hover {
@@ -396,7 +407,6 @@ a:focus {
     background-color: #ea6060;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-red:hover {
@@ -418,7 +428,6 @@ a:focus {
     border: 1px solid #494949;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-darka:hover {
@@ -434,7 +443,6 @@ a:focus {
     border: 1px solid #82368C;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-purplea:hover {
@@ -450,7 +458,6 @@ a:focus {
     border: 1px solid #bfc2c5;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-graya:hover {
@@ -466,7 +473,6 @@ a:focus {
     border: 1px solid #ea6060;
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     border-radius: 2px;
 }
 .btn-reda:hover {
@@ -479,12 +485,14 @@ a:focus {
 }
 
 .fb-like {
-    /*margin-top: 20px;*/
-    position: absolute;
-    left: 5px;
-    bottom: 25px;
+    position: absolute !important;
+    left: 10px;
+    bottom: 20px;
     z-index: 1000px;
-    /*margin: 5px 0 15px 0;*/
+/*    background-color: #fff;
+    border: 1px solid #494949;
+    border-radius: 2px;
+    padding: 8px;*/
 }
 
 /***************************
@@ -522,8 +530,8 @@ input[type="file"] {
 ***************************/
 
 .auth-box {
-    border: 1px solid #eee;
-    background-color: #eee;
+    border: 1px solid #fff;
+    background-color: #fff;
     padding: 20px;
 }
 

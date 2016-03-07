@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^license/', timeline.views.license, name='license'),
     url(r'^timeline/', include('timeline.urls', namespace='timeline')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^like/$', timeline.views.like, name='like'),
 ]
 
 if settings.DEBUG:

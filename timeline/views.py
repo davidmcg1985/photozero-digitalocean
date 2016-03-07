@@ -5,6 +5,8 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from .forms import PhotoForm, CommentForm
 from .models import Photo, Comment
@@ -68,6 +70,7 @@ def photo_detail(request, slug=None):
 		form = CommentForm()
 
 	share_string = quote_plus(instance.description)
+	# number_of_likes = instance.likes.all().count()
 
 	context = {
 		"title": instance.title,
@@ -139,6 +142,29 @@ def photo_delete(request, slug=None):
 
 def license(request):
 	return render(request, "license.html")
+
+
+def like(request, slug=None):
+    if request.method == 'POST':
+        user = request.user
+        # slug = request.POST.get('slug', None)
+        photo = get_object_or_404(Photo, slug=slug)
+
+        if photo.likes.filter(id=user.id).exists():
+            # user has already liked this company
+            # remove like/user
+            photo.likes.remove(user)
+            message = 'You disliked this'
+        else:
+            # add a new like for a company
+            photo.likes.add(user)
+            message = 'You liked this'
+
+    context = {'likes_count': photo.total_likes, 'message': message}
+    # use mimetype instead of content_type if django < 5
+    return HttpResponse(json.dumps(context), content_type='application/json')
+
+
 
 
 

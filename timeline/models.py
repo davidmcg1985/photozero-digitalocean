@@ -41,6 +41,14 @@ class Photo(models.Model):
 	description = models.TextField(max_length=1000)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+	likes = models.ManyToManyField(User, related_name='likes')
+
+	def total_likes(self):
+		return self.likes.count()
+
+	# def save(self, *args, **kwargs):
+	# 	self.slug = slugify(self.name)
+	# 	super(Photo, self).save(*args, **kwargs)
 
 	tags = TaggableManager()
 
@@ -89,3 +97,8 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+
+# class Like(models.Model):
+# 	user = models.ForeignKey(User)
+# 	liked_image = models.ForeignKey(Photo)
+# 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)

@@ -41,7 +41,14 @@
 
 		<div class="row">
 			<div class="col-xs-12 text-left">
-				<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+<!-- 				<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+ -->			<button id="like" name="{{ instance.slug }}" class="btn btn-primary" type="button">
+    				<span class="fa fa-thumbs-up"></span> Like
+    			</button>
+    			<strong id="like_count">{{ instance.total_likes }}</strong> people like this photo.
+
+				<!-- <input type="button" id="like" name="{{ photo_slug }}" value="Like" /> -->
+
 			</div>
 		</div>
 
@@ -154,3 +161,23 @@
 
 
 {% endblock content %}
+
+{% block scripts %}
+<script>
+	$('#like').click(function(){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'like' %}",
+               data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      alert(response.message);
+                      alert('Company likes count is now ' + response.likes_count);
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          }); 
+    })
+</script>
+{% endblock %}

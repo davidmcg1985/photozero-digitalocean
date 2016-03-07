@@ -13,6 +13,5 @@ class PhotoModelAdmin(admin.ModelAdmin):
 	class Meta:
 		model = Photo
 
-
 admin.site.register(Photo, PhotoModelAdmin)
 admin.site.register(Comment)
