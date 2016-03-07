@@ -44,7 +44,11 @@
 
  				<button id="like" name="{{ instance.slug }}" class="btn btn-default like-btn" type="button">
  					<span id="like_count">{{ instance.total_likes }}</span>
-    				<i class="fa fa-star-o fav-star"></i> Favourite
+ 					{% if user in instance.likes.all %}
+    					<i class="fa fa-star fav-star" style="color:gold;"></i> Favourite
+    				{% else %}
+    					<i class="fa fa-star-o fav-star" style="color:black;"></i> Favourite
+    				{% endif %}
     			</button>
 
 			</div>
