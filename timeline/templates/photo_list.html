@@ -71,16 +71,18 @@
           <i class="fa fa-user"></i> {{ obj.user }}
         </div>
         <div class="col-xs-6 col-sm-6 text-right">
-          <i class="fa fa-comment"></i> 
-          <a href="{{ obj.get_absolute_url }}" class="comment-link">
+          
+      <!--  <a href="{{ obj.get_absolute_url }}" class="comment-link">
             {% if obj.comments.count == 0 %}
             No Comments
             {% elif obj.comments.count == 1 %}
             {{ obj.comments.count }} Comment
             {% else %}
             {{ obj.comments.count }} Comments
-            {% endif %}
-          </a>
+            {% endif %} 
+            </a>-->
+            {{ obj.comments.count }} <i class="fa fa-comment"></i> 
+          | <span id="like_count">{{ obj.total_likes }}</span> <i class="fa fa-star fav-star" style="color:gold;"></i>
         </div>
       </div>
 

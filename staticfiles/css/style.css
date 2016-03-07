@@ -191,6 +191,10 @@ a:focus {
     max-height: 100%;
 }
 
+.hello-user {
+    background-color: red;
+}
+
 /***************************
 ******** Timeline ********
 ***************************/
@@ -335,16 +339,16 @@ a:focus {
     }*/
     }
 
-    .fb-like {
+/*    .fb-like {
         position: absolute !important;
         left: 25px !important;
         bottom: 20px;
         z-index: 1000px;
-    /*    background-color: #fff;
+        background-color: #fff;
         border: 1px solid #494949;
         border-radius: 2px;
-        padding: 8px;*/
-    }
+        padding: 8px;
+    }*/
 
 }
 
@@ -484,16 +488,6 @@ a:focus {
     -webkit-font-smoothing: antialiased;
 }
 
-.fb-like {
-    position: absolute !important;
-    left: 10px;
-    bottom: 20px;
-    z-index: 1000px;
-/*    background-color: #fff;
-    border: 1px solid #494949;
-    border-radius: 2px;
-    padding: 8px;*/
-}
 
 /***************************
 ******** Form fields ********

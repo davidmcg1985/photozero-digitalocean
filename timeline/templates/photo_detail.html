@@ -39,35 +39,28 @@
 
 	<div class="container"> <!-- Container -->
 
-		<div class="row">
-			<div class="col-xs-12 text-left">
-
- 				<button id="like" name="{{ instance.slug }}" class="btn btn-default like-btn" type="button">
- 					<span id="like_count">{{ instance.total_likes }}</span>
- 					{% if user in instance.likes.all %}
-    					<i class="fa fa-star fav-star" style="color:gold;"></i> Favourite
-    				{% else %}
-    					<i class="fa fa-star-o fav-star" style="color:black;"></i> Favourite
-    				{% endif %}
-    			</button>
-
-			</div>
-		</div>
-
 	    <div class="row">
-	    	<div class="col-xs-6 col-sm-6 text-left">
+	    	<div class="col-xs-4 col-sm-4 text-left">
 				<a href="{% url 'timeline:list' %}" role="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i> Back</a>
         	</div>
 
-			<div class="col-xs-6 col-sm-6 text-right">
+			<div class="col-xs-8 col-sm-8 text-right">
+				<button id="like" name="{{ instance.slug }}" class="likeBtn btn btn-default" type="button">
+ 					<span id="like_count">{{ instance.total_likes }}</span>
+ 					{% if user in instance.likes.all %}
+    					<i class="fa fa-star fav-star" style="color:gold;"></i>
+    				{% else %}
+    					<i class="fa fa-star-o fav-star" style="color:black;"></i>
+    				{% endif %}
+    			</button>
 				<div class="btn-group dropup">
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    Options <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu dropdown-menu-right">
 				    <li><a href="{{ instance.image.url }}" role="button"><i class="fa fa-download"></i> Download</a></li>
-				    <li role="separator" class="divider"></li>
 				    {% if user.is_superuser or request.user == instance.user %}
+				    <li role="separator" class="divider"></li>
 				    <li><a href="{% url 'timeline:update' slug=instance.slug %}" role="button"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
 				    <li><a href="{% url 'timeline:delete' slug=instance.slug %}" role="button"><i class="fa fa-times-circle"></i> Delete</a></li>
 				    {% else %}
