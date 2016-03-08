@@ -115,7 +115,7 @@
 	          	<div class="text-center">
 					<p>
 						{% if user.is_authenticated %}
-						Hi, <strong>{{  user.username }}</strong>
+						Hi <strong>{{  user.username }}!</strong> Why don't you <a href="{% url 'timeline:create' %}">Upload</a> a new photograph?
 						{% endif %}
 					</p>
 				</div>

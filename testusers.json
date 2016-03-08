@@ -1,0 +1,82 @@
+[
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 2,
+    "fields": {
+      "username": "paulm",
+      "first_name": "Paul",
+      "last_name": "McCartney",
+      "password": "paul123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 3,
+    "fields": {
+      "username": "stevej",
+      "first_name": "Steve",
+      "last_name": "Jobs",
+      "password": "steve123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 4,
+    "fields": {
+      "username": "scarletjo",
+      "first_name": "Scarlet",
+      "last_name": "Johanssen",
+      "password": "scarlet123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 5,
+    "fields": {
+      "username": "davidb",
+      "first_name": "David",
+      "last_name": "Beckham",
+      "password": "david123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 6,
+    "fields": {
+      "username": "camerond",
+      "first_name": "Cameron",
+      "last_name": "Diaz",
+      "password": "cameron123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 7,
+    "fields": {
+      "username": "katew",
+      "first_name": "Kate",
+      "last_name": "Winslet",
+      "password": "kate123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 8,
+    "fields": {
+      "username": "leonardo",
+      "first_name": "Leonardo",
+      "last_name": "Di Caprio",
+      "password": "leonardo123"
+    }
+  },
+  {
+    "model": "django.contrib.auth.models.user",
+    "pk": 9,
+    "fields": {
+      "username": "chrisb",
+      "first_name": "Christian",
+      "last_name": "Bale",
+      "password": "christian123"
+    }
+  }
+]

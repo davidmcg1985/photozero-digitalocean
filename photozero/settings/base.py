@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
+    'autofixture',
 ]
 
 SITE_ID = 1
@@ -183,3 +184,7 @@ SOCIALACCOUNT_PROVIDERS = \
         'LOCALE_FUNC': lambda request: 'en_GB',
         'VERIFIED_EMAIL': True,
         'VERSION': 'v2.4'}}
+
+FIXTURE_DIRS = (
+   '/timeline/fixtures/',
+)
