@@ -6,6 +6,9 @@ photozero-do.sublime-workspace
 mediafiles/
 photozeroenv/
 timeline/migrations/
+photozero/__init__.pyc
+photozero/urls.pyc
+photozero/wsgi.pyc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
