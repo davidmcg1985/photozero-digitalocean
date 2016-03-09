@@ -497,7 +497,8 @@ a:focus {
 
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
      outline: none !important; 
-     outline-offset: -2px; 
+     outline-offset: 0px !important; 
+     outline-color: transparent !important;
 }
 
 /***************************
