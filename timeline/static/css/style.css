@@ -497,8 +497,8 @@ a:focus {
 
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
      outline: none !important; 
-     /*outline: 5px auto -webkit-focus-ring-color; */
-     /*outline-offset: -2px; */
+     outline: 0px !important; 
+     outline-offset: 0px !important; 
 }
 
 /***************************
