@@ -46,10 +46,6 @@ class Photo(models.Model):
 	def total_likes(self):
 		return self.likes.count()
 
-	# def save(self, *args, **kwargs):
-	# 	self.slug = slugify(self.name)
-	# 	super(Photo, self).save(*args, **kwargs)
-
 	tags = TaggableManager()
 
 	def __unicode__(self):
@@ -96,9 +92,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
-
-
-# class Like(models.Model):
-# 	user = models.ForeignKey(User)
-# 	liked_image = models.ForeignKey(Photo)
-# 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)

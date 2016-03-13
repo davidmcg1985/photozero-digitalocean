@@ -1,118 +1,80 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
 {% load i18n %}
 
 {% block content %}
 
-  <div class="space"></div> <!-- 40px Vertical Spacing -->
+    <div class="space"></div> <!-- 40px vertical spacing -->
 
-  <div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="text-center">
+    <!-- photo timeline header -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="text-center">
+                    <span>Upload/Download <a href="{% url 'license' %}">(do as you please)</a> high-resolution photos.</span> <!-- link to license -->
 
-              <span>Upload/Download <a href="{% url 'license' %}">(do as you please)</a> high-resolution photos.</span>
-
-              <div class="space"></div> <!-- 40px Vertical Spacing -->
-              
-              <form method="GET" action="">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" name="search" value="{{ request.GET.q }}"> 
-                   <span class="input-group-btn">
-                      <button class="btn btn-default" type="submit">
-                         Search!
-                      </button>
-                   </span>
-                </div><!-- /input-group -->
-                <a href="{% url 'timeline:list' %}">Clear search results</a>
-              </form>
-          </div>
-      </div>
-    </div>
-  </div>
-
-  {% for obj in object_list %}
-  <div class="timeline"><!-- Timeline -->
-
-    <div class="container"> <!-- Top Container -->
-
-      <div class="row">
-        <div class="col-xs-12 text-center">
-          <a href="{{ obj.get_absolute_url }}"><h1 style="text-decoration: underline;">{{ obj.title }}</h1></a>
-        </div>
-      </div>
-      <div class="row"><!-- row starts -->
-        <div class="col-xs-5">
-          <i>{{obj.tags.all|join:", "}}</i><br/>
-        </div>
-        <div class="col-xs-7 text-right">
-          {{ obj.timestamp | timesince }} Ago
-        </div>
-      </div><!-- row ends -->
-      
-        <div class="row"><!-- row starts -->
-          <div class="col-md-12 image-max">
-            <div class="timeline-image">
-                {% if obj.image %}
-                <a href="{{ obj.get_absolute_url }}">
-                 <img src='{{ obj.image.url }}' class='img-responsive' />
-                </a>
-                {% endif %}
+                    <div class="space"></div> <!-- 40px vertical spacing -->
+                
+                    <form method="GET" action=""> <!-- Search box / title, desc, photographer and tags -->
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" name="search" value="{{ request.GET.q }}"> 
+                         <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                               Search!
+                            </button>
+                         </span>
+                      </div>
+                      <a href="{% url 'timeline:list' %}">Clear search results</a> <!-- clear results -->
+                    </form>
+                </div>
             </div>
-          </div>
-        </div><!-- row ends -->
-    </div> <!-- Top Container End -->
-
-    <div class="container"> <!-- Bottom Container -->
-
-      <div class="row"><!-- row starts -->
-        <div class="col-xs-6 col-sm-6 text-left">
-          <i class="fa fa-user"></i> {{ obj.user }}
         </div>
-        <div class="col-xs-6 col-sm-6 text-right">
-          
-      <!--  <a href="{{ obj.get_absolute_url }}" class="comment-link">
-            {% if obj.comments.count == 0 %}
-            No Comments
-            {% elif obj.comments.count == 1 %}
-            {{ obj.comments.count }} Comment
-            {% else %}
-            {{ obj.comments.count }} Comments
-            {% endif %} 
-            </a>-->
-            {{ obj.comments.count }} <i class="fa fa-comment"></i> 
-          | <span id="like_count">{{ obj.total_likes }}</span> <i class="fa fa-star fav-star" style="color:gold;"></i>
-        </div>
-      </div>
-
-    </div> <!-- Bottom Container End -->
-  </div>
-  {% endfor %}
-
-  <div class="space"></div> <!-- 40px Vertical Spacing -->
-
-<!--   <div class="container">
-    <div class="col-md-12 text-center">
-      <ul class="pagination pagination-lg">
-        <li>{% if object_list.has_previous %}
-          <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
-          {% endif %}
-        </li>
-        <li>
-          <span class="current">
-            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
-          </span>
-        </li>
-        <li>
-          <a href="#">2</a>
-        </li>
-        <li>{% if object_list.has_next %}
-          <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
-            {% endif %}
-        </li>
-      </ul>
     </div>
-  </div> -->
+
+    {% for obj in object_list %} <!-- display each photo object -->
+
+    <div class="timeline"><!-- timeline container starts -->
+        <div class="container"> <!-- Top Container -->
+            <div class="row"><!-- row starts -->
+                <div class="col-xs-12 text-center">
+                    <a href="{{ obj.get_absolute_url }}"><h1 style="text-decoration: underline;">{{ obj.title }}</h1></a> <!-- photo object title -->
+                </div>
+            </div><!-- row ends -->
+
+            <div class="row"><!-- row starts -->
+                <div class="col-xs-5">
+                    <i>{{obj.tags.all|join:", "}}</i><br/> <!-- photo object tags -->
+                </div>
+                <div class="col-xs-7 text-right">
+                    {{ obj.timestamp | timesince }} Ago <!-- photo object timestamp (time since) -->
+                </div>
+            </div><!-- row ends -->
+          
+            <div class="row"><!-- row starts -->
+                <div class="col-md-12 image-max">
+                    <div class="timeline-image">
+                        {% if obj.image %} <!-- photo object image -->
+                        <a href="{{ obj.get_absolute_url }}">
+                            <img src='{{ obj.image.url }}' class='img-responsive' />
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div><!-- row ends -->
+        </div> <!-- Top Container End -->
+
+        <div class="container"> <!-- Bottom Container -->
+            <div class="row"><!-- row starts -->
+                <div class="col-xs-6 col-sm-6 text-left">
+                    <i class="fa fa-user"></i> {{ obj.user }} <!-- photo object user -->
+                </div>
+                <div class="col-xs-6 col-sm-6 text-right">
+                    {{ obj.comments.count }} <i class="fa fa-comment"></i> | <span id="like_count">{{ obj.total_likes }}</span> <i class="fa fa-star fav-star" style="color:gold;"></i> <!-- photo object total comments / likes -->
+                </div>
+            </div><!-- row ends -->
+        </div> <!-- Bottom Container End -->
+    </div> <!--timeline container ends -->
+
+    {% endfor %}
 
 {% endblock content %}

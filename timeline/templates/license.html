@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
 {% load i18n %}
 
 {% block content %}
 
-  <div class="space"></div> <!-- 40px Vertical Spacing -->
+    <div class="space"></div> <!-- 40px vertical spacing -->
 
-  <div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 auth-box">
-          <div class="text-center">
-			<p>All photos published on PhotoZero are licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="blank">Creative Commons Zero</a> which means you can copy, modify, distribute and use the photos for free, including commercial purposes, without asking permission from or providing attribution to the photographer or PhotoZero.</p>
-          </div>
+    <!-- creative commons zero license -->
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-md-offset-3 auth-box">
+            <div class="text-center">
+    		        <p>All photos published on PhotoZero are licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="blank">Creative Commons Zero</a> which means you can copy, modify, distribute and use the photos for free, including commercial purposes, without asking permission from or providing attribution to the photographer or PhotoZero.</p>
+            </div>
+        </div>
       </div>
     </div>
-  </div>
 
 {% endblock content %}

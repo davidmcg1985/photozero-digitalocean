@@ -2,185 +2,141 @@
 {% load urlify %}
 {% load crispy_forms_tags %}
 {% load staticfiles %}
-
 {% load i18n %}
-
 {% block head_title %}
 {{ instance.title }} | {{ block.super }}
 {% endblock head_title %}
 
-
-
 {% block content %}
 
-  <div class="space"></div> <!-- 40px Vertical Spacing -->
+	<div class="space"></div> <!-- 40px vertical spacing -->
 
-  <!-- Photo Detail -->
- 	<div class="photo">
-
-	<div class="container">
-
-		<div class="row">
-			<div class="col-sm-12 text-center">
-				<h1>{{ title }}</h4>
-			</div>
-		</div>	
-
-		<div class="row">
-			<div class="col-md-12 image-max">
-				<div class="photo-image">
-				{% if instance.image %}
-		    		<img src='{{ instance.image.url }}' class='img-responsive' />
-		    	{% endif %}
+		<div class="container"> <!-- title and image container -->
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<h1>{{ title }}</h4> <!-- photo instance title -->
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-md-12 image-max">
+					<div class="photo-image">
+					{% if instance.image %} <!-- photo instance image -->
+			    		<img src='{{ instance.image.url }}' class='img-responsive' />
+			    	{% endif %}
+		    		</div>
 	    		</div>
-    		</div>
-    	</div>
-	</div>
-
-	<div class="container"> <!-- Container -->
-
-	    <div class="row">
-	    	<div class="col-xs-4 col-sm-4 text-left">
-				<a href="{% url 'timeline:list' %}" role="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i> Back</a>
-        	</div>
-
-			<div class="col-xs-8 col-sm-8 text-right">
-				<button id="like" name="{{ instance.slug }}" class="likeBtn btn btn-default" type="button">
- 					<span id="like_count">{{ instance.total_likes }}</span>
- 					{% if user in instance.likes.all %}
-    					<i class="fa fa-star fav-star" style="color:gold;"></i>
-    				{% else %}
-    					<i class="fa fa-star-o fav-star" style="color:black;"></i>
-    				{% endif %}
-    			</button>
-				<div class="btn-group dropup">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    Options <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu dropdown-menu-right">
-				    <li><a href="{{ instance.image.url }}" role="button"><i class="fa fa-download"></i> Download</a></li>
-				    {% if user.is_superuser or request.user == instance.user %}
-				    <li role="separator" class="divider"></li>
-				    <li><a href="{% url 'timeline:update' slug=instance.slug %}" role="button"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
-				    <li><a href="{% url 'timeline:delete' slug=instance.slug %}" role="button"><i class="fa fa-times-circle"></i> Delete</a></li>
-				    {% else %}
-				    {% endif %}
-				    
-				  </ul>
-				</div>
-			</div>
+	    	</div>
 		</div>
 
-		<div class="space"></div> <!-- 40px Vertical Spacing -->
+		<div class="container"> <!-- main image details container -->
+		    <div class="row">
+		    	<div class="col-xs-4 col-sm-4 text-left">
+					<a href="{% url 'timeline:list' %}" role="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i> Back</a>
+	        	</div>
 
+				<div class="col-xs-8 col-sm-8 text-right">
+					<button id="like" name="{{ instance.slug }}" class="likeBtn btn btn-default" type="button">
+	 					<span id="like_count">{{ instance.total_likes }}</span> <!-- photo instance likes -->
+	 					{% if user in instance.likes.all %}
+	    					<i class="fa fa-star fav-star" style="color:gold;"></i>
+	    				{% else %}
+	    					<i class="fa fa-star-o fav-star" style="color:black;"></i>
+	    				{% endif %}
+	    			</button>
+					<div class="btn-group dropup"> <!-- photo instance options dropdown -->
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Options <span class="caret"></span>
+						</button>
+					  	<ul class="dropdown-menu dropdown-menu-right">
+						    <li><a href="{{ instance.image.url }}" role="button"><i class="fa fa-download"></i> Download</a></li>
+						    {% if user.is_superuser or request.user == instance.user %} <!-- options only displayed on certain conditions -->
+						    <li role="separator" class="divider"></li>
+						    <li><a href="{% url 'timeline:update' slug=instance.slug %}" role="button"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+						    <li><a href="{% url 'timeline:delete' slug=instance.slug %}" role="button"><i class="fa fa-times-circle"></i> Delete</a></li>
+						    {% else %}
+						    {% endif %}
+					  	</ul>
+					</div>
+				</div>
+			</div>
 
-	 	<!--<div class="row">
-	 		<div class="col-xs-4 col-sm-2 col-md-2">
-				<span class="btn btn-block btn-purplea" style="cursor: default; text-transform: none;">Share</span>
-			</div>
-			<div class="col-xs-3 col-sm-2 col-md-1">
-				<a class="btn btn-block btn-graya btn-comment" href="#comments" data-toggle="tooltip" data-placement="bottom" title="Comments" data-original-title="Comments">
-				    <span><i class="fa fa-comment" style="color: #FF9B37;"></i></span>
-				</a>
-			</div>
-			<div class="col-xs-3 col-sm-2 col-md-1">
-				<a class="btn btn-block btn-darka btn-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" onclick="window.open(this.href,'facebook-share-dialog','width=626,height=436');return false;" data-toggle="tooltip" data-placement="bottom" title="Facebook" data-original-title="Facebook">
-				    <span><i class="fa fa-facebook-square" style="color: #004088;"></i></span>
-				</a>
-			</div>
-			<div class="col-xs-3 col-sm-2 col-md-1">
-				<a class="btn btn-block btn-darka btn-twitter" target="_blank" href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}" onclick="window.open(this.href,'twitter-share-dialog','width=626,height=436');return false;" data-toggle="tooltip" data-placement="bottom" title="Twitter" data-original-title="Twitter">
-				   <span><i class="fa fa-twitter-square" style="color: #49A8DE;"></i></span>
-				</a>
-			</div>
-			<div class="col-xs-3 col-sm-2 col-md-1">
-				<a class="btn btn-block btn-darka btn-whatsapp hidden-btn-whatsapp" href="whatsapp://send?text={{ title }}%20{{ request.build_absolute_uri }}" target="_blank" data-text="{{ title }} " data-href="{{ request.build_absolute_uri }}" data-toggle="tooltip" data-placement="bottom" title="WhatsApp" data-original-title="WhatsApp"><span><i class="fa fa-whatsapp" style="color: #43D854;"></i></span></a>
-			</div>
-		</div>-->
+			<div class="space"></div> <!-- 40px vertical spacing -->
 		
-		<div class='row'>
-			<div class='col-sm-12'>
-				<i class="fa fa-user"></i> Uploaded by {{ instance.user }} on {{ instance.timestamp }}
-				<div class="description">
-					<h4>Description</h4>
-					{{ instance.description|linebreaks }}
+			<div class='row'>
+				<div class='col-sm-12'>
+					<i class="fa fa-user"></i> Uploaded by {{ instance.user }} on {{ instance.timestamp }} <!-- photo instance timestamp -->
+					<div class="description">
+						<h4>Description</h4>
+						{{ instance.description|linebreaks }} <!-- photo instance description -->
+					</div>
+					Tags: <i>{{instance.tags.all|join:", "}}</i> <!-- photo instance tags -->
 				</div>
-				Tags: <i>{{instance.tags.all|join:", "}}</i>
 			</div>
-		</div>
 
-		<div class="space"></div> <!-- 40px Vertical Spacing -->
+			<div class="space"></div> <!-- 40px vertical spacing -->
 	
-		<div class="comment-section">
-		<div class="row">
-			<div class="col-md-12" id="comments">
-				<h4>
-					{% if instance.comments.count == 0 %}
-		            No Comments
-		            {% elif instance.comments.count == 1 %}
-		            {{ instance.comments.count }} Comment
-		            {% else %}
-		            {{ instance.comments.count }} Comments
-		            {% endif %}
-				</h4>
-				<hr style="margin-top: 10px;">
-					{% for comment in instance.comments.all %}
-					    <div class="comment">
-					        <div class="date pull-right">{{ comment.created_date | timesince }} Ago</div>
-					        <strong>{{ comment.author }}</strong>
-					        <p>{{ comment.text|linebreaks }}</p>
-					    </div>
-					    <hr>
-					{% endfor %}
-				<!-- Facebook comments -->
-				<!--<div class="col-sm-12">
-					<div id="comments" class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div>
-				</div> -->
-			</div>
-		</div>
+			<div class="comment-section">
+				<div class="row">
+					<div class="col-md-12" id="comments"> <!-- photo instance total comments -->
+						<h4>
+							{% if instance.comments.count == 0 %}
+				            No Comments
+				            {% elif instance.comments.count == 1 %}
+				            {{ instance.comments.count }} Comment
+				            {% else %}
+				            {{ instance.comments.count }} Comments
+				            {% endif %}
+						</h4>
+						<hr style="margin-top: 10px;">
+							{% for comment in instance.comments.all %} <!-- photo instance display comments -->
+							    <div class="comment">
+							        <div class="date pull-right">{{ comment.created_date | timesince }} Ago</div>
+							        <strong>{{ comment.author }}</strong>
+							        <p>{{ comment.text|linebreaks }}</p>
+							    </div>
+							    <hr>
+							{% endfor %}
+					</div>
+				</div>
 		
-		{% if user.is_superuser or user.is_authenticated %} 
-		<div class="row">
-			<div class="col-md-12">
-				<form method="POST" class="comment-form" action=''>
-					{% csrf_token %}
-			        {{ form | crispy }}
-				    <button type="submit" class="comment-add btn btn-default">Add</button>
-				</form>
+				{% if user.is_superuser or user.is_authenticated %} 
+				<div class="row">
+					<div class="col-md-12">
+						<form method="POST" class="comment-form" action="">
+							{% csrf_token %}
+					        {{ form | crispy }}
+						    <button type="submit" class="comment-add btn btn-default">Add</button>
+						</form>
+					</div>
+				</div>
+				{% endif %}
 			</div>
-		</div>
-		{% endif %}
-	</div>
-
-  </div>
-
+  		</div>
 
 {% endblock content %}
 
 {% block scripts %}
-<script>
-	$('#like').click(function(){
-      $.ajax({
-               type: "POST",
-               url: "{% url 'like' %}",
-               data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-               dataType: "json",
-               success: function(response) {
-                      // alert(response.message);
-                      // alert('Company likes count is now ' + response.likes_count);
-                      $("#like_count").text(response.likes_count);
-                      //$(".fav-star").removeClass("fa-star-o").addClass("fa-star").css("color", "gold");
+	<!-- ajax handler for custom like button / adds and removes CSS classes to change style after button click -->
+	<script>
+		$('#like').click(function(){
+	      $.ajax({
+	               type: "POST",
+	               url: "{% url 'like' %}",
+	               data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+	               dataType: "json",
+	               success: function(response) {
+	                      $("#like_count").text(response.likes_count);
 
-                      if (response.action == "liked") {
-                      	$(".fav-star").removeClass("fa-star-o").addClass("fa-star").css("color", "gold");
-                      } else {
-                      	$(".fav-star").removeClass("fa-star").addClass("fa-star-o").css("color", "black");
-                      }
-                },
-                error: function(rs, e) {
-                       alert(rs.responseText);
-                }
-          }); 
-    })
-</script>
+	                      if (response.action == "liked") {
+	                      	$(".fav-star").removeClass("fa-star-o").addClass("fa-star").css("color", "gold");
+	                      } else {
+	                      	$(".fav-star").removeClass("fa-star").addClass("fa-star-o").css("color", "black");
+	                      }
+	                },
+	                error: function(rs, e) {
+	                       alert(rs.responseText);
+	                }
+	          }); 
+	    })
+	</script>
 {% endblock %}

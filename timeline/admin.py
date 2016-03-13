@@ -8,7 +8,6 @@ class PhotoModelAdmin(admin.ModelAdmin):
 	list_display = ["title", "updated", "timestamp", "user", "pk"]
 	list_display_links = ["title"]
 	list_filter = ["updated", "timestamp"]
-	#list_editable = ["draft"]
 	search_fields = ["title", "description"]
 	ordering = ["timestamp"]
 

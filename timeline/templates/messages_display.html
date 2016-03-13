@@ -1,9 +1,10 @@
  {% if messages %}
 
+	<!-- success and alert messages -->
     <div class="messages">
-    {% for message in messages %}
-    <p{% if message.tags %} class="{{ message.tags }} alert alert-success" role="alert" {% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
-    {% endfor %}
+    	{% for message in messages %}
+    	<p{% if message.tags %} class="{{ message.tags }} alert alert-success" role="alert" {% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
+    	{% endfor %}
 	</div>
 
 {% endif %}

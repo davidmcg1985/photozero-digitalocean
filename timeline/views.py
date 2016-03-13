@@ -30,7 +30,6 @@ def photo_list(request):
 			Q(description__icontains=query) |
 			Q(user__first_name__icontains=query) |
 			Q(user__last_name__icontains=query) |
-			# Q(tags__icontains=query) |
 			Q(tags__name__in=[query])
 			).distinct()
 
@@ -73,7 +72,6 @@ def photo_detail(request, slug=None):
 		form = CommentForm()
 
 	share_string = quote_plus(instance.description)
-	# number_of_likes = instance.likes.all().count()
 
 	context = {
 		"title": instance.title,
@@ -116,7 +114,6 @@ def photo_update(request, slug=None):
 
 	if form.is_valid():
 		instance = form.save(commit=False)
-		# instance.user = request.user
 		instance.save()
 		form.save_m2m()
 		messages.success(request, "Succesfully Updated") # message success
@@ -152,22 +149,18 @@ def like(request):
         user = request.user
         slug = request.POST.get('slug', None)
         photo = get_object_or_404(Photo, slug=slug)
-        # photo = get_object_or_404(Photo, slug=request.POST['slug'])
 
         if photo.likes.filter(id=user.id).exists():
-            # user has already liked this company
+            # user has already liked this photo
             # remove like/user
             photo.likes.remove(user)
-            message = 'You disliked this'
             action = 'disliked'
         else:
-            # add a new like for a company
+            # add a new like for this photo
             photo.likes.add(user)
-            message = 'You liked this'
             action = 'liked'
 
     context = {'likes_count': photo.total_likes(), 'message': message, 'action': action}
-    # use mimetype instead of content_type if django < 5
     return JsonResponse(context)
 
 
