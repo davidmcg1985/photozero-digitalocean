@@ -121,6 +121,14 @@ a:hover, a:focus {
     display: inline-block;
 }
 
+.navbar-collapse.collapse.in {display: block !important; }
+
+.navbar {
+    min-height: 50px;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid #82368C !important;
+}
+
 .logo {
     max-height: 100%;
 }
