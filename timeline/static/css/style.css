@@ -139,7 +139,7 @@ a:focus {
 .navbar {
     min-height: 50px;
     margin-bottom: 0 !important;
-    border-bottom: 1px solid #82368C;
+    border-bottom: 1px solid #82368C !important;
 }
 
 .navbar-right {
