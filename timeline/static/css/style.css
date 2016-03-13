@@ -1,5 +1,6 @@
 /* Font imports */
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800);
+
 body {
     font-family: 'Raleway', Arial, sans-serif;
     color: #666;
@@ -12,84 +13,37 @@ body {
     padding: 0;
     margin-top: 50px;
 }
+
 html {
     height: 100%;
     padding: 0;
     margin: 0;
 }
+
 h1 {
     font-size: 40px;
     font-weight: 800;
     text-transform: uppercase;
 }
-h2 {
-    font-size: 36px;
-    font-weight: normal;
-    text-transform: uppercase;
-}
-h3 {
-    font-size: 28px;
-    font-weight: 600;
-}
+
 h4 {
     font-size: 16px;
     font-weight: 800;
     text-transform: uppercase;
 }
-h5 {
-    font-size: 14px;
-    font-weight: 300;
-    text-transform: uppercase;
-}
-h6 {
-    font-size: 12px;
-    line-height: 18px;
-}
+
 a {
     color: #666;
     text-decoration: none;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
     color: #82368C;
     text-decoration: none;
 }
-.right {
-    float: right;
-    clear: right;
-}
-.left {
-    float: left;
-    clear: left;
-}
-.center {
-    text-align: center;
-    vertical-align: middle;
-}
-.space { padding-top: 40px }
-.padding-right { padding-left: 10px }
-.bold { font-weight: 700 }
-.light { font-weight: lighter }
-#header {
-    background-color: #ffffff;
-    color: #82368C;
-    padding: 20px;
-}
-.title {
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
 
-#team,
-#timeline,
-#testimonial,
-#pricing,
-#promo,
-#button {
-    color: #424242;
-    height: auto;
-    text-align: center;
+.space { 
+    padding-top: 40px 
 }
 
 .alert-success {
@@ -97,6 +51,7 @@ a:focus {
     background-color: #82368C;
     border-color: #82368C;
 }
+
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -112,39 +67,38 @@ a:focus {
     float: none;
     padding: 5px 0px;
 }
+
 .navbar-toggle {
     display: block;
 }
+
 .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
+
 .navbar-collapse.collapse {
     display: none!important;
 }
+
 .navbar-nav {
     float: none!important;
     margin: 0;
 }
+
 .navbar-nav>li {
     float: none;
 }
+
 .navbar-nav>li>a {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.navbar-collapse.collapse.in {display: block !important; }
-
 .navbar {
     min-height: 50px;
     margin-bottom: 0 !important;
-    border-bottom: 1px solid #82368C !important;
-}
-
-.navbar-right {
-    float: right !important;
-    margin-right: 0 !important;
+    border-bottom: 1px solid #82368C;
 }
 
 .navbar-default {
@@ -186,36 +140,13 @@ a:focus {
 }
 
 .timeline-image img {
-/*    border-top: 1px solid #82368C;
-    border-bottom: 1px solid #82368C;*/
     min-width: 100%;
     min-height: 100%;
-}
-
-#timeline hr {
-    padding: 0px;
-    margin: 0px 0px 40px 0px;
-}
-
-.details {
-    padding: 0;
-    margin: 0;
-}
-
-.favourite {
-    padding: 0;
-    margin: 0;    
 }
 
 .pagination li > span, a{
     color: #82368C;
     font-family: 'Raleway', Arial, sans-serif;
-}
-
-.search-box {
-    border: 1px solid #eee;
-    background-color: #eee;
-    padding: 10px;
 }
 
 .image-max {
@@ -238,19 +169,8 @@ a:focus {
 }
 
 .photo-image img {
-/*    border-top: 1px solid #82368C;
-    border-bottom: 1px solid #82368C;*/
     min-width: 100%;
     min-height: 100%;
-}
-
-/*#photoDetail hr {
-    padding: 0px;
-    margin: 40px 0px 40px 0px;
-}*/
-
-.image-author {
-    font-size: 18px;
 }
 
 .description {
@@ -258,38 +178,6 @@ a:focus {
     border-bottom: 1px solid #82368C;
     padding: 20px;
     margin: 10px 0px 10px 0px;
-}
-
-.btn-comment {
-    box-shadow: 0px 0px 0px 0px #FF9B37 inset !important;
-    border: 1px solid #FF9B37 !important;
-    /*border-bottom: 5px solid #FF9B37 !important;*/
-    color: #FF9B37 !important;
-    text-decoration: none;
-}
-
-.btn-facebook {
-    box-shadow: 0px 0px 0px 0px #004088 inset !important;
-    border: 1px solid #004088 !important;
-    /*border-bottom: 5px solid #004088 !important;*/
-    color: #fff;
-    text-decoration: none;
-}
-
-.btn-twitter {
-    box-shadow: 0px 0px 0px 0px #49A8DE inset !important;
-    border: 1px solid #49A8DE !important;    
-    /*border-bottom: 5px solid #49A8DE !important;*/
-    color: #fff !important;
-    text-decoration: none;
-}
-
-.btn-whatsapp {
-    box-shadow: 0px 0px 0px 0px #43D854 inset !important;
-    border: 1px solid #43D854 !important;    
-    /*border-bottom: 5px solid #43D854 !important;*/
-    color: #43D854 !important;
-    text-decoration: none;
 }
 
 .comment-section {
@@ -304,39 +192,20 @@ a:focus {
 }
 
 @media only screen and (min-width: 768px) {
-    .hidden-btn-whatsapp {
-        display: none; 
-    }
-
     .image-max {
         padding-left: 15px !important;
         padding-right: 15px !important;
-    /*margin: 0px !important;
-    }*/
     }
-
-    .fb-like {
-        position: absolute !important;
-        left: 25px !important;
-        bottom: 20px;
-        z-index: 1000px;
-    /*    background-color: #fff;
-        border: 1px solid #494949;
-        border-radius: 2px;
-        padding: 8px;*/
-    }
-
 }
 
 /***************************
 ******** Buttons ********
 ***************************/
 
-.btn { margin-bottom: 20px }
-.btn-noblock { width: 160px }
-.searchBtn {
-    margin: 0 !important;
+.btn { 
+    margin-bottom: 20px 
 }
+
 .btn-dark {
     color: #fff !important;
     background-color: #494949;
@@ -344,6 +213,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-dark:hover {
     color: #fff !important;
     background-color: #5F5F5F;
@@ -352,6 +222,7 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-purple {
     color: #fff !important;
     background-color: #82368C;
@@ -359,6 +230,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-purple:hover {
     color: #fff !important;
     background-color: #82368C;
@@ -367,6 +239,7 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-gray {
     color: #fff !important;
     background-color: #bfc2c5;
@@ -374,6 +247,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-gray:hover {
     color: #fff !important;
     background-color: #B8B8B8;
@@ -382,6 +256,7 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-red {
     color: #fff !important;
     background-color: #ea6060;
@@ -389,6 +264,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-red:hover {
     color: #fff !important;
     background-color: #DF4E4E;
@@ -397,12 +273,14 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .icon {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-darka {
     color: #494949 !important;
     border: 1px solid #494949;
@@ -410,6 +288,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-darka:hover {
     color: #494949 !important;
     border: 1px solid #5F5F5F;
@@ -418,6 +297,7 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-purplea {
     color: #494949 !important;
     border: 1px solid #82368C;
@@ -425,6 +305,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-purplea:hover {
     color: #494949 !important;
     border: 1px solid #82368C;
@@ -433,6 +314,7 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-graya {
     color: #bfc2c5 !important;
     border: 1px solid #bfc2c5;
@@ -440,6 +322,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-graya:hover {
     color: #bfc2c5 !important;
     border: 1px solid #B8B8B8;
@@ -448,6 +331,7 @@ a:focus {
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
 }
+
 .btn-reda {
     color: #ea6060 !important;
     border: 1px solid #ea6060;
@@ -455,6 +339,7 @@ a:focus {
     font-weight: 700;
     border-radius: 2px;
 }
+
 .btn-reda:hover {
     color: #ea6060 !important;
     border: 1px solid #DF4E4E;
@@ -462,17 +347,6 @@ a:focus {
     -moz-transition: all 0.5s;
     transition: all 0.5s;
     -webkit-font-smoothing: antialiased;
-}
-
-.fb-like {
-    position: absolute !important;
-    left: 10px;
-    bottom: 20px;
-    z-index: 1000px;
-/*    background-color: #fff;
-    border: 1px solid #494949;
-    border-radius: 2px;
-    padding: 8px;*/
 }
 
 .btn:focus, .btn:active:focus{
@@ -512,7 +386,7 @@ input[type="file"] {
 
 
 /***************************
-******** Accounts ********
+******** Account Pages ********
 ***************************/
 
 .auth-box {
