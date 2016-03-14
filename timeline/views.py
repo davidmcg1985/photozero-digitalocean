@@ -160,7 +160,7 @@ def like(request):
             photo.likes.add(user)
             action = 'liked'
 
-    context = {'likes_count': photo.total_likes(), 'message': message, 'action': action}
+    context = {'likes_count': photo.total_likes(), 'action': action}
     return JsonResponse(context)
 
 

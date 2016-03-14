@@ -58,6 +58,7 @@
 						    <li><a href="{% url 'timeline:delete' slug=instance.slug %}" role="button"><i class="fa fa-times-circle"></i> Delete</a></li>
 						    {% else %}
 						    {% endif %}
+						    <li><a href="mailto:david@dmcportfolio.co.uk?subject={{ instance.url }}&amp;body={{ request.user }} has reported the photograph: {{ instance.slug }} uploaded by {{ instance.user }} as inappropriate or offensive" role="button"><i class="fa fa-flag-o"></i> Report</a></li>
 					  	</ul>
 					</div>
 				</div>
