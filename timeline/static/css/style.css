@@ -98,7 +98,7 @@ a:hover, a:focus {
 .navbar {
     min-height: 50px;
     margin-bottom: 0 !important;
-    border-bottom: 1px solid #82368C;
+    border-bottom: 1px solid #82368C !important;
 }
 
 .navbar-default {
@@ -357,7 +357,7 @@ a:hover, a:focus {
     -webkit-font-smoothing: antialiased;
 }
 
-.btn:focus, .btn:active:focus{
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus { 
      outline: none !important; 
      outline-offset: 0px !important; 
      outline-color: transparent !important;
