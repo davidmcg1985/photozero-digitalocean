@@ -16,14 +16,9 @@ from .models import Photo, Comment
 
 
 def photo_list(request):
-
 	queryset_list = Photo.objects.all()
-
-	if request.user.is_staff or request.user.is_superuser:
-		queryset_list = Photo.objects.all()
-
 	query = request.GET.get("search")
-
+	
 	if query:
 		queryset_list = queryset_list.filter(
 			Q(title__icontains=query) |
@@ -33,22 +28,9 @@ def photo_list(request):
 			Q(tags__name__in=[query])
 			).distinct()
 
-	paginator = Paginator(queryset_list, 10) # Show 10 items per page
-	page_request_var = "page"
-	page = request.GET.get(page_request_var)
-	try:
-		queryset = paginator.page(page)
-	except PageNotAnInteger:
-	    # If page is not an integer, deliver first page.
-	    queryset = paginator.page(1)
-	except EmptyPage:
-	    # If page is out of range (e.g. 9999), deliver last page of results.
-	    queryset = paginator.page(paginator.num_pages)
-
 	context = {
-		"object_list": queryset,
+		"object_list": queryset_list,
 		"title": "PhotoZone",
-		"page_request_var": page_request_var,
 	}
 
 	return render(request, "photo_list.html", context)
