@@ -76,7 +76,7 @@ def photo_create(request):
 		instance.user = request.user
 		instance.save()
 		form.save_m2m()
-		messages.success(request, "Succesfully Created") # message success
+		messages.success(request, "Succesfully Uploaded") # message success
 
 		return HttpResponseRedirect(instance.get_absolute_url())
 		
