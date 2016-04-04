@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'photozero.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'photozerobasic',
+        'NAME': 'photozerodb',
         'USER': 'photozerouser',
         'PASSWORD': 'photozerobasic',
         'HOST': 'localhost',
