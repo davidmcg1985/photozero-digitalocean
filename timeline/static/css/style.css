@@ -392,6 +392,10 @@ input[type="file"] {
     margin-top: 10px;
 }
 
+.progress-bar {
+    background-color: #82368C !important;
+}
+
 
 /***************************
 ******** Account Pages ********
