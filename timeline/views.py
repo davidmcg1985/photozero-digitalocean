@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 try:
     from django.utils import simplejson as json
@@ -14,15 +15,18 @@ except ImportError:
 from .forms import PhotoForm, CommentForm
 from .models import Photo, Comment
 
+def photo_test(request):
+	return HttpResponse("<h2>Test View Works!!</h2>")
 
 def photo_list(request):
 	queryset_list = Photo.objects.all()
-	query = request.GET.get("search")
+	query = request.GET.get("q")
 	
 	if query:
 		queryset_list = queryset_list.filter(
 			Q(title__icontains=query) |
 			Q(description__icontains=query) |
+			Q(user__username__icontains=query) |
 			Q(user__first_name__icontains=query) |
 			Q(user__last_name__icontains=query) |
 			Q(tags__name__in=[query])
@@ -30,7 +34,7 @@ def photo_list(request):
 
 	context = {
 		"object_list": queryset_list,
-		"title": "PhotoZone",
+		"title": "PhotoZero",
 	}
 
 	return render(request, "photo_list.html", context)
@@ -49,6 +53,7 @@ def photo_detail(request, slug=None):
 		    comment.author = request.user
 		    comment.post = instance
 		    comment.save()
+		    messages.success(request, "Comment Added") # message success
 		    return redirect('timeline:detail', slug=instance.slug)
 	else:
 		form = CommentForm()

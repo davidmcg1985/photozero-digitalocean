@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', timeline.views.photo_list, name='list'),
     url(r'^license/', timeline.views.license, name='license'),
+    url(r'^test/', timeline.views.photo_test, name='test'),
+    # url(r'^timeline/', timeline.views.photo_test, name='test'),
     url(r'^timeline/', include('timeline.urls', namespace='timeline')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^like/$', timeline.views.like, name='like'), # no template
