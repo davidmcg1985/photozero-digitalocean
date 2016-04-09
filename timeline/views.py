@@ -131,7 +131,7 @@ def license(request):
 	return render(request, "license.html")
 
 
-def like(request):
+def photo_like(request):
     if request.method == 'POST':
         user = request.user
         slug = request.POST.get('slug', None)

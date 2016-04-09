@@ -13,7 +13,7 @@ urlpatterns = [
     # url(r'^timeline/', timeline.views.photo_test, name='test'),
     url(r'^timeline/', include('timeline.urls', namespace='timeline')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^like/$', timeline.views.like, name='like'), # no template
+    url(r'^like/$', timeline.views.photo_like , name='like'), # no template
 ]
 
 if settings.DEBUG:

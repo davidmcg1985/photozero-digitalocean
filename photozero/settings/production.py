@@ -16,12 +16,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
-# EMAIL_MAIN = 'dmcgweb101@gmail.com'
-# EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
-# EMAIL_PORT = 587
-# EMAIL_USER_TLS = True
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_MAIN = 'dmcgweb101@gmail.com'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USER_TLS = True
 
 ADMINS = [('Webmaster','dmcgweb101@gmail.com'), ('Manager', 'errors@photozero.co.uk')]
 
